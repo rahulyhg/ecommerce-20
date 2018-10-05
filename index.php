@@ -2,6 +2,7 @@
 session_start();
 require_once("vendor/autoload.php");
 
+
 use \Slim\Slim;
 use \Hcode\Page;
 use \Hcode\PageAdmin;
@@ -61,6 +62,8 @@ $app->get('/admin/logout', function() {
 $app->get("/admin/users", function(){
 
     User::verifyLogin();
+
+    User::listAll();
 
     $page = new PageAdmin();
 
