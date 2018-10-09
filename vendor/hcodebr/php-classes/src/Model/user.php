@@ -83,7 +83,16 @@ class User extends Model {
 
         $sql = new Sql();
 
-        $sql->select("");
+        $results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
+            $this->getdesperson(),
+            $this->getdeslogin(),
+            $this->getdespassword(),
+            $this->getdesemail(),
+            $this->getnrphone(),
+            $this->getinadmin()
+        ));
+
+        $this->setData($results[0]); /* só interessa o que é digitado no primeiro registro*/
     }
 
 }
